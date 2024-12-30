@@ -1,0 +1,30 @@
+version: '3.8'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres
+    environment:
+      POSTGRES_USER: admin                  # ชื่อผู้ใช้สำหรับ PostgreSQL
+      POSTGRES_PASSWORD: admin123           # รหัสผ่านสำหรับ PostgreSQL
+      POSTGRES_DB: my_database              # ชื่อฐานข้อมูลเริ่มต้น
+    ports:
+      - "15432:5432"                         # เปิดพอร์ต 5432 สำหรับ PostgreSQL
+    volumes:
+      - ./data/postgres:/var/lib/postgresql/data # เก็บข้อมูล PostgreSQL ในโฟลเดอร์ ./data/postgres
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com # อีเมลสำหรับเข้าใช้งาน pgAdmin
+      PGADMIN_DEFAULT_PASSWORD: admin         # รหัสผ่านสำหรับเข้าใช้งาน pgAdmin
+    ports:
+      - "5050:80"                             # เปิดพอร์ต 5050 สำหรับ pgAdmin
+    depends_on:
+      - postgres                              # รอ PostgreSQL พร้อมก่อนเปิด pgAdmin
+    volumes:
+      - ./data/pgadmin:/var/lib/pgadmin       # เก็บข้อมูล pgAdmin ในโฟลเดอร์ ./data/pgadmin
+
+volumes:
+  postgres-data:
+  pgadmin-data:

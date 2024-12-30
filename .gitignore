@@ -1,0 +1,5 @@
+# Ignore .venv folder
+Postgres-python-fastapi/.venv/
+
+# Ignore all __pycache__ folders
+__pycache__/
