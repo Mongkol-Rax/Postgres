@@ -7,6 +7,7 @@ services:
       POSTGRES_USER: admin                  # ชื่อผู้ใช้สำหรับ PostgreSQL
       POSTGRES_PASSWORD: admin123           # รหัสผ่านสำหรับ PostgreSQL
       POSTGRES_DB: my_database              # ชื่อฐานข้อมูลเริ่มต้น
+      TZ: Asia/Bangkok                      # ตั้งค่า time zone
     ports:
       - "15432:5432"                         # เปิดพอร์ต 5432 สำหรับ PostgreSQL
     volumes:
@@ -18,6 +19,7 @@ services:
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@example.com # อีเมลสำหรับเข้าใช้งาน pgAdmin
       PGADMIN_DEFAULT_PASSWORD: admin         # รหัสผ่านสำหรับเข้าใช้งาน pgAdmin
+      TZ: Asia/Bangkok                        # ตั้งค่า time zone
     ports:
       - "5050:80"                             # เปิดพอร์ต 5050 สำหรับ pgAdmin
     depends_on:
